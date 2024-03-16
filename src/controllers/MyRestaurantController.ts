@@ -46,12 +46,12 @@ const updateMyRestaurant = async (req: Request, res: Response) => {
   try {
     const restaurant = await Restaurant.findOne({
       user: req.userId,
-    });
+    });//for specifying search cretirea
 
     if (!restaurant) {
       return res.status(404).json({ message: "restaurant not found" });
     }
-
+//updating all things according to needs
     restaurant.restaurantName = req.body.restaurantName;
     restaurant.city = req.body.city;
     restaurant.country = req.body.country;
@@ -118,6 +118,7 @@ const updateOrderStatus = async (req: Request, res: Response) => {
   }
 };
 
+//this function will accept the file that we want to upload and convert that into binary (url created )
 const uploadImage = async (file: Express.Multer.File) => {
   const image = file;
   const base64Image = Buffer.from(image.buffer).toString("base64");
